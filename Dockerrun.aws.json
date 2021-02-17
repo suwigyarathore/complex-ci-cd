@@ -1,0 +1,36 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+      {
+          "name": "client",
+          "image": "suwigyarathore/complex-ci-cd-client",
+          "hostname": "client",
+          "essential": false
+      },
+      {
+        "name": "server",
+        "image": "suwigyarathore/complex-ci-cd-server",
+        "hostname": "api",
+        "essential": false
+      },
+      {
+        "name": "worker",
+        "image": "suwigyarathore/complex-ci-cd-worker",
+        "hostname": "worker",
+        "essential": false
+      },
+      {
+        "name": "nginx",
+        "image": "suwigyarathore/complex-ci-cd-nginx",
+        "hostname": "nginx",
+        "essential": true,
+        "portMappings": [
+            {
+                "hostPort": 80,
+                "containerPort": 80
+            }
+        ],
+        "links":["client", "server"]
+      }
+    ]
+}
