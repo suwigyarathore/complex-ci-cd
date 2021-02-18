@@ -19,3 +19,15 @@ after_success:
   - docker push suwigyarathore/complex-ci-cd-nginx
   - docker push suwigyarathore/complex-ci-cd-server
   - docker push suwigyarathore/complex-ci-cd-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-2'
+  app: 'complex-ci-cd'
+  env: 'Complexcicd-env'
+  bucket_name: 'elasticbeanstalk-us-east-2-153157716099'
+  bucket_path: 'complex-ci-cd'
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
